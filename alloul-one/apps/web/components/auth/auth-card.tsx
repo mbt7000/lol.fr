@@ -13,6 +13,7 @@ export function AuthCard() {
     setMsg('Sending code...')
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/v1'}/auth/passwordless/start`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ email }),
     })
@@ -22,12 +23,12 @@ export function AuthCard() {
   async function verifyCode() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/v1'}/auth/passwordless/verify`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ email, code }),
     })
     const data = await res.json()
     if (data.accessToken) {
-      document.cookie = `ao_token=${data.accessToken}; path=/; max-age=${60 * 60 * 24}`
       setMsg('Logged in.')
       router.push('/dashboard')
     } else setMsg('Invalid code')

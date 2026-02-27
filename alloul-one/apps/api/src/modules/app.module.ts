@@ -17,6 +17,7 @@ import { UsageModule } from './usage/usage.module';
 import { AiModule } from './ai/ai.module';
 import { ObservabilityModule } from './observability/observability.module';
 import { TenantMiddleware } from '../common/middleware/tenant.middleware';
+import { SecurityMiddleware } from '../common/middleware/security.middleware';
 import { RbacGuard } from '../common/guards/rbac.guard';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 
@@ -26,6 +27,6 @@ import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(TenantMiddleware).forRoutes('*');
+    consumer.apply(SecurityMiddleware, TenantMiddleware).forRoutes('*');
   }
 }
