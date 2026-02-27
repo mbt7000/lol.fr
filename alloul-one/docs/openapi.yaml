@@ -89,6 +89,25 @@ paths:
           schema: { type: string }
       responses:
         '200': { description: Tasks list }
+    post:
+      summary: Create task
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [projectId, title]
+              properties:
+                projectId: { type: string }
+                title: { type: string }
+                priority: { type: string }
+                assigneeId: { type: string }
+                dueDate: { type: string, format: date-time }
+      responses:
+        '201': { description: Created }
   /orgs/{orgId}/documents:
     get:
       summary: List documents
@@ -117,6 +136,53 @@ paths:
         - $ref: '#/components/parameters/OrgId'
       responses:
         '200': { description: Workflows list }
+    post:
+      summary: Create workflow
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, definition]
+              properties:
+                name: { type: string }
+                definition: { type: object }
+                enabled: { type: boolean }
+      responses:
+        '201': { description: Created }
+  /orgs/{orgId}/workflows/{workflowId}/run:
+    post:
+      summary: Run workflow
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - in: path
+          name: workflowId
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input: { type: object }
+      responses:
+        '200': { description: Run accepted }
+  /orgs/{orgId}/workflows/runs/{runId}/logs:
+    get:
+      summary: Get workflow run logs
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - in: path
+          name: runId
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Logs list }
   /orgs/{orgId}/handovers:
     post:
       summary: Create handover package

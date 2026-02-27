@@ -19,9 +19,9 @@
 - [x] Immutable audit log chain/hash verification endpoint
 
 ## M3
-- Projects/Tasks modules
-- Workflow engine + trigger/action registry
-- Outbox publisher + worker subscriptions
+- [x] Projects/Tasks modules
+- [x] Workflow engine + trigger/action registry
+- [x] Outbox publisher + worker subscriptions
 
 ## M4
 - Handover module
