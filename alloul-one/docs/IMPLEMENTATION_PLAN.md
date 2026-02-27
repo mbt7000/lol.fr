@@ -24,9 +24,9 @@
 - [x] Outbox publisher + worker subscriptions
 
 ## M4
-- Handover module
-- Handover score model + explanation report
-- Ownership transfer workflows
+- [x] Handover module
+- [x] Handover score model + explanation report
+- [~] Ownership transfer workflows (next increment: assign successor + transfer actions)
 
 ## M5
 - Public feed/profile/follows/groups

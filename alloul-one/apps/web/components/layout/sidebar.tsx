@@ -1,4 +1,4 @@
-import { Brain, Building2, CreditCard, FolderKanban, GitBranch, Home, LibraryBig, Settings, Users } from 'lucide-react'
+import { Brain, Building2, ClipboardCheck, CreditCard, FolderKanban, GitBranch, Home, LibraryBig, Settings, Users } from 'lucide-react'
 import Link from 'next/link'
 
 const items = [
@@ -6,6 +6,7 @@ const items = [
   { href: '/onboarding', label: 'Organizations', icon: Building2 },
   { href: '/projects', label: 'Projects', icon: FolderKanban },
   { href: '/workflows', label: 'Workflows', icon: GitBranch },
+  { href: '/handover', label: 'Handover', icon: ClipboardCheck },
   { href: '/knowledge', label: 'Knowledge', icon: LibraryBig },
   { href: '/admin', label: 'Admin', icon: Users },
   { href: '/billing', label: 'Billing', icon: CreditCard },

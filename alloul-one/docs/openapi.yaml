@@ -183,7 +183,13 @@ paths:
           schema: { type: string }
       responses:
         '200': { description: Logs list }
-  /orgs/{orgId}/handovers:
+  /orgs/{orgId}/handover:
+    get:
+      summary: List handover records
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200': { description: Handover list }
     post:
       summary: Create handover package
       parameters:
@@ -195,6 +201,41 @@ paths:
             schema: { $ref: '#/components/schemas/CreateHandoverRequest' }
       responses:
         '201': { description: Created }
+  /orgs/{orgId}/handover/{handoverId}/checklist/{itemId}:
+    patch:
+      summary: Toggle handover checklist item
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - in: path
+          name: handoverId
+          required: true
+          schema: { type: string }
+        - in: path
+          name: itemId
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [isDone]
+              properties:
+                isDone: { type: boolean }
+      responses:
+        '200': { description: Updated }
+  /orgs/{orgId}/handover/{handoverId}/report:
+    post:
+      summary: Generate handover report
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - in: path
+          name: handoverId
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Generated report }
   /feed/posts:
     get:
       summary: Public/personalized feed
