@@ -1,0 +1,277 @@
+openapi: 3.1.0
+info:
+  title: Alloul One API
+  version: 0.1.0
+  description: Core enterprise API contracts for multi-tenant platform.
+servers:
+  - url: https://api.alloulone.com/v1
+security:
+  - bearerAuth: []
+paths:
+  /auth/login:
+    post:
+      summary: Passwordless/OIDC login initiation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /orgs:
+    get:
+      summary: List organizations
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Organizations list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOrganizations'
+    post:
+      summary: Create organization
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrganizationRequest'
+      responses:
+        '201':
+          description: Created
+  /orgs/{orgId}/projects:
+    get:
+      summary: List projects by tenant
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - in: query
+          name: status
+          schema: { type: string }
+      responses:
+        '200':
+          description: Projects list
+    post:
+      summary: Create project
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateProjectRequest' }
+      responses:
+        '201': { description: Created }
+  /orgs/{orgId}/tasks:
+    get:
+      summary: List tasks
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - in: query
+          name: projectId
+          schema: { type: string }
+        - in: query
+          name: assigneeId
+          schema: { type: string }
+      responses:
+        '200': { description: Tasks list }
+  /orgs/{orgId}/documents:
+    get:
+      summary: List documents
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - in: query
+          name: q
+          schema: { type: string }
+      responses:
+        '200': { description: Documents list }
+    post:
+      summary: Create document
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateDocumentRequest' }
+      responses:
+        '201': { description: Created }
+  /orgs/{orgId}/workflows:
+    get:
+      summary: List workflows
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200': { description: Workflows list }
+  /orgs/{orgId}/handovers:
+    post:
+      summary: Create handover package
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateHandoverRequest' }
+      responses:
+        '201': { description: Created }
+  /feed/posts:
+    get:
+      summary: Public/personalized feed
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200': { description: Feed list }
+  /marketplace/listings:
+    get:
+      summary: List marketplace listings
+      parameters:
+        - in: query
+          name: type
+          schema: { type: string, enum: [SERVICE, JOB, REQUEST, PRODUCT] }
+      responses:
+        '200': { description: Listings list }
+  /billing/subscriptions:
+    get:
+      summary: List subscriptions
+      responses:
+        '200': { description: Subscription list }
+  /ai/query:
+    post:
+      summary: Permission-aware AI query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [orgId, query]
+              properties:
+                orgId: { type: string }
+                query: { type: string }
+                contextIds:
+                  type: array
+                  items: { type: string }
+      responses:
+        '200': { description: AI answer }
+  /webhooks/stripe:
+    post:
+      summary: Stripe webhook receiver
+      responses:
+        '200': { description: Accepted }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    OrgId:
+      in: path
+      name: orgId
+      required: true
+      schema: { type: string }
+    Page:
+      in: query
+      name: page
+      schema: { type: integer, minimum: 1, default: 1 }
+    PageSize:
+      in: query
+      name: pageSize
+      schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+    Sort:
+      in: query
+      name: sort
+      schema: { type: string, example: 'createdAt:desc' }
+    IdempotencyKey:
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema: { type: string, minLength: 8 }
+  schemas:
+    LoginRequest:
+      type: object
+      required: [email]
+      properties:
+        email: { type: string, format: email }
+        provider: { type: string, enum: [passwordless, google, apple, x, oidc] }
+    AuthResponse:
+      type: object
+      properties:
+        status: { type: string }
+        nextStep: { type: string }
+    CreateOrganizationRequest:
+      type: object
+      required: [name, slug]
+      properties:
+        name: { type: string }
+        slug: { type: string }
+        locale: { type: string, enum: [ar, en, zh, ko] }
+    CreateProjectRequest:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        description: { type: string }
+        dueDate: { type: string, format: date-time }
+    CreateDocumentRequest:
+      type: object
+      required: [title, content]
+      properties:
+        title: { type: string }
+        content: { type: object }
+    CreateHandoverRequest:
+      type: object
+      required: [ownerUserId]
+      properties:
+        ownerUserId: { type: string }
+        checklist:
+          type: array
+          items: { type: string }
+    Organization:
+      type: object
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        name: { type: string }
+        planTier: { type: string }
+    PaginatedOrganizations:
+      type: object
+      properties:
+        data:
+          type: array
+          items: { $ref: '#/components/schemas/Organization' }
+        meta:
+          type: object
+          properties:
+            page: { type: integer }
+            pageSize: { type: integer }
+            total: { type: integer }
+    Error:
+      type: object
+      properties:
+        code: { type: string }
+        message: { type: string }
+        details: { type: object }
+        requestId: { type: string }
+x-rate-limits:
+  default:
+    window: 60s
+    requests: 120
+  auth:
+    window: 60s
+    requests: 20

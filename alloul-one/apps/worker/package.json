@@ -1,0 +1,9 @@
+{
+  "name": "@alloul/worker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json"
+  }
+}
