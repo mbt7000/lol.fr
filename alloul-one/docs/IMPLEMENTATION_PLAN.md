@@ -6,9 +6,9 @@
 - [x] Initial Prisma schema
 - [x] OpenAPI seed contracts
 - [x] Local docker-compose for core services
-- [ ] NestJS bootstrap with modules (auth/org/rbac/admin)
-- [ ] OIDC + OAuth2 + passwordless
-- [ ] Tenant middleware + policy guards
+- [x] NestJS bootstrap with modules (auth/org/rbac/admin)
+- [~] OIDC + OAuth2 + passwordless (skeleton started, providers pending)
+- [x] Tenant middleware + policy guards (initial scaffold)
 
 ## M2
 - Knowledge base modules (docs/versioning/approvals)
