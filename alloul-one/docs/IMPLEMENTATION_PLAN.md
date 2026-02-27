@@ -9,6 +9,7 @@
 - [x] NestJS bootstrap with modules (auth/org/rbac/admin)
 - [~] OIDC + OAuth2 + passwordless (skeleton started, providers pending)
 - [x] Tenant middleware + policy guards (initial scaffold)
+- [x] M1.5 UI shell: Sidebar + Auth page + Onboarding page + Admin overview
 
 ## M2
 - Knowledge base modules (docs/versioning/approvals)
