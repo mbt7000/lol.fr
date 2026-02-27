@@ -13,8 +13,9 @@ const items = [
   { href: '/groups', label: 'Groups', icon: Users },
   { href: '/marketplace', label: 'Marketplace', icon: Store },
   { href: '/admin', label: 'Admin', icon: Users },
-  { href: '/billing', label: 'Billing', icon: CreditCard },
-  { href: '/ai', label: 'AI Core', icon: Brain },
+  { href: '/billing-portal', label: 'Billing', icon: CreditCard },
+  { href: '/ai-core', label: 'AI Core', icon: Brain },
+  { href: '/observability', label: 'Observability', icon: Brain },
   { href: '/settings', label: 'Settings', icon: Settings },
 ]
 

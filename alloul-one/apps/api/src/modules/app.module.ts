@@ -12,12 +12,16 @@ import { OutboxModule } from './outbox/outbox.module';
 import { HandoverModule } from './handover/handover.module';
 import { SocialModule } from './social/social.module';
 import { MarketplaceModule } from './marketplace/marketplace.module';
+import { BillingModule } from './billing/billing.module';
+import { UsageModule } from './usage/usage.module';
+import { AiModule } from './ai/ai.module';
+import { ObservabilityModule } from './observability/observability.module';
 import { TenantMiddleware } from '../common/middleware/tenant.middleware';
 import { RbacGuard } from '../common/guards/rbac.guard';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 
 @Module({
-  imports: [AuthModule, OrgsModule, RbacModule, AdminModule, KnowledgeModule, SearchModule, AuditModule, ProjectsModule, WorkflowsModule, OutboxModule, HandoverModule, SocialModule, MarketplaceModule],
+  imports: [AuthModule, OrgsModule, RbacModule, AdminModule, KnowledgeModule, SearchModule, AuditModule, ProjectsModule, WorkflowsModule, OutboxModule, HandoverModule, SocialModule, MarketplaceModule, BillingModule, UsageModule, AiModule, ObservabilityModule],
   providers: [RbacGuard, JwtAuthGuard],
 })
 export class AppModule implements NestModule {

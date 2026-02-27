@@ -387,8 +387,68 @@ paths:
   /billing/subscriptions:
     get:
       summary: List subscriptions
+      parameters:
+        - in: query
+          name: orgId
+          schema: { type: string }
       responses:
         '200': { description: Subscription list }
+    post:
+      summary: Create subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [orgId, tier]
+              properties:
+                orgId: { type: string }
+                tier: { type: string, enum: [FREE, PRO, BUSINESS, ENTERPRISE] }
+                seats: { type: integer }
+                aiCredits: { type: integer }
+      responses:
+        '201': { description: Created }
+  /billing/invoices:
+    post:
+      summary: Create invoice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [subscriptionId, amount]
+              properties:
+                subscriptionId: { type: string }
+                amount: { type: number }
+                currency: { type: string }
+      responses:
+        '201': { description: Created }
+  /orgs/{orgId}/usage:
+    get:
+      summary: List usage meters by org
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200': { description: Usage list }
+  /orgs/{orgId}/usage/increment:
+    post:
+      summary: Increment usage meter
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [key]
+              properties:
+                key: { type: string }
+                amount: { type: integer }
+      responses:
+        '200': { description: Incremented }
   /orgs/{orgId}/knowledge/documents:
     get:
       summary: List knowledge documents

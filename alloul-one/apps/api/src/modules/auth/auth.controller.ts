@@ -36,7 +36,7 @@ export class AuthController {
   passwordlessVerify(@Body() body: { email: string; code: string }) {
     const ok = body.code.length >= 6;
     if (!ok) return { error: 'invalid_code' };
-    const accessToken = this.jwt.sign({ sub: body.email, role: 'owner', permissions: ['org.read', 'org.write', 'rbac.read', 'knowledge.read', 'knowledge.write', 'knowledge.approve', 'search.query', 'search.index', 'audit.read', 'audit.write', 'audit.verify', 'project.read', 'project.write', 'task.read', 'task.write', 'workflow.read', 'workflow.write', 'workflow.run', 'handover.read', 'handover.write', 'social.read', 'social.write', 'marketplace.read', 'marketplace.write'] });
+    const accessToken = this.jwt.sign({ sub: body.email, role: 'owner', permissions: ['org.read', 'org.write', 'rbac.read', 'knowledge.read', 'knowledge.write', 'knowledge.approve', 'search.query', 'search.index', 'audit.read', 'audit.write', 'audit.verify', 'project.read', 'project.write', 'task.read', 'task.write', 'workflow.read', 'workflow.write', 'workflow.run', 'handover.read', 'handover.write', 'social.read', 'social.write', 'marketplace.read', 'marketplace.write', 'billing.read', 'billing.write', 'usage.read', 'usage.write', 'ai.query'] });
     return { accessToken, refreshToken: `refresh_${Buffer.from(body.email).toString('hex')}` };
   }
 }

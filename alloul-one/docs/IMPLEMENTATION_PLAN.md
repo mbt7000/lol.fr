@@ -34,10 +34,10 @@
 - [~] Messaging architecture (phase-prep)
 
 ## M6
-- Stripe billing + usage metering
-- AI modules (memory/reasoning/summarizer/executor)
-- Observability stack (otel, prometheus, grafana, sentry)
-- Security hardening pass
+- [x] Stripe billing + usage metering (webhook scaffold)
+- [x] AI modules (memory/reasoning/summarizer/executor) foundation endpoint
+- [x] Observability stack (otel, prometheus, grafana, sentry) bootstrap configs
+- [x] Security hardening pass checklist + baseline controls
 
 ## M7
 - K8s production manifests + Helm values
