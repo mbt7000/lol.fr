@@ -36,7 +36,7 @@ export class AuthController {
   passwordlessVerify(@Body() body: { email: string; code: string }) {
     const ok = body.code.length >= 6;
     if (!ok) return { error: 'invalid_code' };
-    const accessToken = this.jwt.sign({ sub: body.email, role: 'owner', permissions: ['org.read', 'org.write', 'rbac.read'] });
+    const accessToken = this.jwt.sign({ sub: body.email, role: 'owner', permissions: ['org.read', 'org.write', 'rbac.read', 'knowledge.read', 'knowledge.write', 'knowledge.approve', 'search.query', 'search.index', 'audit.read', 'audit.write', 'audit.verify'] });
     return { accessToken, refreshToken: `refresh_${Buffer.from(body.email).toString('hex')}` };
   }
 }

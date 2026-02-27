@@ -1,10 +1,11 @@
-import { Brain, Building2, CreditCard, FolderKanban, Home, Settings, Users } from 'lucide-react'
+import { Brain, Building2, CreditCard, FolderKanban, Home, LibraryBig, Settings, Users } from 'lucide-react'
 import Link from 'next/link'
 
 const items = [
   { href: '/dashboard', label: 'Home', icon: Home },
   { href: '/onboarding', label: 'Organizations', icon: Building2 },
   { href: '/dashboard', label: 'Projects', icon: FolderKanban },
+  { href: '/knowledge', label: 'Knowledge', icon: LibraryBig },
   { href: '/admin', label: 'Admin', icon: Users },
   { href: '/billing', label: 'Billing', icon: CreditCard },
   { href: '/ai', label: 'AI Core', icon: Brain },

@@ -14,9 +14,9 @@
 - [x] M1.7: JWT session guard + protected routes + auth wiring improvements + visual polish
 
 ## M2
-- Knowledge base modules (docs/versioning/approvals)
-- Search indexing pipeline (Meilisearch -> OpenSearch migration path)
-- Immutable audit log chain/hash verification endpoint
+- [x] Knowledge base modules (docs/versioning/approvals)
+- [x] Search indexing pipeline (Meilisearch -> OpenSearch migration path)
+- [x] Immutable audit log chain/hash verification endpoint
 
 ## M3
 - Projects/Tasks modules

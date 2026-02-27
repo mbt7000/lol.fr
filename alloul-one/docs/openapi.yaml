@@ -151,6 +151,76 @@ paths:
       summary: List subscriptions
       responses:
         '200': { description: Subscription list }
+  /orgs/{orgId}/knowledge/documents:
+    get:
+      summary: List knowledge documents
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200': { description: Document list }
+    post:
+      summary: Create knowledge document
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, content, createdById]
+              properties:
+                title: { type: string }
+                content: { type: object }
+                createdById: { type: string }
+      responses:
+        '201': { description: Created }
+  /orgs/{orgId}/search:
+    get:
+      summary: Search tenant data
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - in: query
+          name: q
+          schema: { type: string }
+      responses:
+        '200': { description: Search results }
+  /audit/logs:
+    get:
+      summary: List audit logs
+      parameters:
+        - in: query
+          name: orgId
+          schema: { type: string }
+      responses:
+        '200': { description: Audit logs }
+    post:
+      summary: Append audit log entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action, resourceType]
+              properties:
+                orgId: { type: string }
+                actorUserId: { type: string }
+                action: { type: string }
+                resourceType: { type: string }
+                resourceId: { type: string }
+                payload: { type: object }
+      responses:
+        '201': { description: Logged }
+  /audit/verify:
+    get:
+      summary: Verify immutable audit hash chain
+      parameters:
+        - in: query
+          name: limit
+          schema: { type: integer, default: 500 }
+      responses:
+        '200': { description: Verification result }
   /ai/query:
     post:
       summary: Permission-aware AI query
