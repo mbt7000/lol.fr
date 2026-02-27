@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: alloul-one
+  labels:
+    app.kubernetes.io/name: alloul-one
+    app.kubernetes.io/part-of: alloul-one-platform

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alloul-api
+  namespace: alloul-one
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: alloul-api
+  template:
+    metadata:
+      labels:
+        app: alloul-api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/alloul-one/api:latest
+          ports:
+            - containerPort: 4000
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: alloul-secrets
+                  key: DATABASE_URL
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: alloul-secrets
+                  key: REDIS_URL
+          readinessProbe:
+            httpGet:
+              path: /v1/observability/healthz
+              port: 4000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /v1/observability/healthz
+              port: 4000
+            initialDelaySeconds: 20
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alloul-web
+  namespace: alloul-one
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: alloul-web
+  template:
+    metadata:
+      labels:
+        app: alloul-web
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/alloul-one/web:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: NEXT_PUBLIC_API_URL
+              value: https://api.alloulone.com/v1
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 20

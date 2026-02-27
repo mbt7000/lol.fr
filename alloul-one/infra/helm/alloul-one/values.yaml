@@ -1,0 +1,13 @@
+namespace: alloul-one
+image:
+  api: ghcr.io/alloul-one/api:latest
+  web: ghcr.io/alloul-one/web:latest
+  worker: ghcr.io/alloul-one/worker:latest
+replicaCount:
+  api: 3
+  web: 3
+  worker: 2
+ingress:
+  enabled: true
+  webHost: alloulone.com
+  apiHost: api.alloulone.com

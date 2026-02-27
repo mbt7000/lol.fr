@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alloul-ingress
+  namespace: alloul-one
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/enable-modsecurity: "true"
+spec:
+  tls:
+    - hosts: [alloulone.com, api.alloulone.com]
+      secretName: alloul-tls
+  rules:
+    - host: alloulone.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: alloul-web
+                port:
+                  number: 80
+    - host: api.alloulone.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: alloul-api
+                port:
+                  number: 80

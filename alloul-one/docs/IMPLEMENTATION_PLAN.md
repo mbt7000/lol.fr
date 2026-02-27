@@ -40,6 +40,6 @@
 - [x] Security hardening pass checklist + baseline controls
 
 ## M7
-- K8s production manifests + Helm values
-- Terraform baseline infra modules
-- Runbooks, SLO/SLI, incident checklist
+- [x] K8s production manifests + Helm values
+- [x] Terraform baseline infra modules
+- [x] Runbooks, SLO/SLI, incident checklist
