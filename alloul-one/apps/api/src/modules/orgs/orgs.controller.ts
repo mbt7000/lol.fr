@@ -3,9 +3,11 @@ import { ApiTags } from '@nestjs/swagger';
 import { RbacGuard } from '../../common/guards/rbac.guard';
 import { Permissions } from '../../common/decorators/permissions.decorator';
 import { OrgsService } from './orgs.service';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
 @ApiTags('orgs')
 @Controller('orgs')
+@UseGuards(JwtAuthGuard)
 export class OrgsController {
   constructor(private readonly orgs: OrgsService) {}
 

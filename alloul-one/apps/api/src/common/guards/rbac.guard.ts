@@ -14,8 +14,7 @@ export class RbacGuard implements CanActivate {
 
     if (!required.length) return true;
     const req = context.switchToHttp().getRequest();
-    const raw = (req.header('x-permissions') || '') as string;
-    const granted = raw.split(',').map((p) => p.trim()).filter(Boolean);
+    const granted = ((req.user?.permissions as string[]) || []).filter(Boolean);
     return required.every((p) => granted.includes(p));
   }
 }

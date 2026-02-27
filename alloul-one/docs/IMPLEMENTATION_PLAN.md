@@ -11,6 +11,7 @@
 - [x] Tenant middleware + policy guards (initial scaffold)
 - [x] M1.5 UI shell: Sidebar + Auth page + Onboarding page + Admin overview
 - [x] M1.6: API-connected Auth/Onboarding + i18n switch + RTL
+- [x] M1.7: JWT session guard + protected routes + auth wiring improvements + visual polish
 
 ## M2
 - Knowledge base modules (docs/versioning/approvals)

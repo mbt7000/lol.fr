@@ -1,10 +1,13 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { randomUUID } from 'crypto';
 import { ApiTags } from '@nestjs/swagger';
+import { randomUUID } from 'crypto';
+import { JwtService } from '@nestjs/jwt';
 
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
+  constructor(private readonly jwt: JwtService) {}
+
   @Post('login')
   login(@Body() body: { email: string; provider?: string }) {
     return {
@@ -16,9 +19,10 @@ export class AuthController {
 
   @Get('oidc/start')
   oidcStart(@Query('provider') provider = 'google') {
+    const callback = process.env.OIDC_CALLBACK_URL || 'http://localhost:4000/v1/auth/oidc/callback';
     return {
       provider,
-      redirectUrl: `https://auth.example.com/${provider}/authorize`,
+      redirectUrl: `https://auth.example.com/${provider}/authorize?redirect_uri=${encodeURIComponent(callback)}`,
       state: randomUUID(),
     };
   }
@@ -31,8 +35,8 @@ export class AuthController {
   @Post('passwordless/verify')
   passwordlessVerify(@Body() body: { email: string; code: string }) {
     const ok = body.code.length >= 6;
-    return ok
-      ? { accessToken: `dev_${Buffer.from(body.email).toString('base64')}`, refreshToken: 'dev_refresh' }
-      : { error: 'invalid_code' };
+    if (!ok) return { error: 'invalid_code' };
+    const accessToken = this.jwt.sign({ sub: body.email, role: 'owner', permissions: ['org.read', 'org.write', 'rbac.read'] });
+    return { accessToken, refreshToken: `refresh_${Buffer.from(body.email).toString('hex')}` };
   }
 }

@@ -2,11 +2,16 @@
 
 import { useState } from 'react'
 
+function readCookie(name: string) {
+  return document.cookie.split('; ').find((c) => c.startsWith(name + '='))?.split('=')[1]
+}
+
 export function OnboardingOrgForm() {
   const [status, setStatus] = useState('')
 
   async function submit(formData: FormData) {
     setStatus('Saving...')
+    const token = readCookie('ao_token')
     const payload = {
       name: String(formData.get('name') || ''),
       slug: String(formData.get('slug') || ''),
@@ -19,11 +24,11 @@ export function OnboardingOrgForm() {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          'x-permissions': 'org.write',
+          authorization: token ? `Bearer ${token}` : '',
         },
         body: JSON.stringify(payload),
       })
-      setStatus(res.ok ? 'Organization created.' : 'Failed to create org')
+      setStatus(res.ok ? 'Organization created.' : 'Unauthorized or failed')
     } catch {
       setStatus('API offline. Start apps/api first.')
     }
