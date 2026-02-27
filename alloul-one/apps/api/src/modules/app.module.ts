@@ -10,12 +10,14 @@ import { ProjectsModule } from './projects/projects.module';
 import { WorkflowsModule } from './workflows/workflows.module';
 import { OutboxModule } from './outbox/outbox.module';
 import { HandoverModule } from './handover/handover.module';
+import { SocialModule } from './social/social.module';
+import { MarketplaceModule } from './marketplace/marketplace.module';
 import { TenantMiddleware } from '../common/middleware/tenant.middleware';
 import { RbacGuard } from '../common/guards/rbac.guard';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 
 @Module({
-  imports: [AuthModule, OrgsModule, RbacModule, AdminModule, KnowledgeModule, SearchModule, AuditModule, ProjectsModule, WorkflowsModule, OutboxModule, HandoverModule],
+  imports: [AuthModule, OrgsModule, RbacModule, AdminModule, KnowledgeModule, SearchModule, AuditModule, ProjectsModule, WorkflowsModule, OutboxModule, HandoverModule, SocialModule, MarketplaceModule],
   providers: [RbacGuard, JwtAuthGuard],
 })
 export class AppModule implements NestModule {

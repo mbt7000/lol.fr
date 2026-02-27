@@ -244,6 +244,85 @@ paths:
         - $ref: '#/components/parameters/PageSize'
       responses:
         '200': { description: Feed list }
+    post:
+      summary: Create feed post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [authorId, content]
+              properties:
+                authorId: { type: string }
+                content: { type: string }
+                visibility: { type: string, enum: [PUBLIC, CONNECTIONS, PRIVATE] }
+      responses:
+        '201': { description: Created }
+  /feed/posts/{postId}/reactions:
+    post:
+      summary: React to post
+      parameters:
+        - in: path
+          name: postId
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [userId, type]
+              properties:
+                userId: { type: string }
+                type: { type: string }
+      responses:
+        '200': { description: Reaction upserted }
+  /social/follow:
+    post:
+      summary: Follow a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [followerId, followeeId]
+              properties:
+                followerId: { type: string }
+                followeeId: { type: string }
+      responses:
+        '200': { description: Followed }
+  /social/profiles/{userId}:
+    get:
+      summary: Get profile by user id
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Profile payload }
+  /social/groups:
+    get:
+      summary: List social groups
+      responses:
+        '200': { description: Group list }
+    post:
+      summary: Create social group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string }
+                description: { type: string }
+      responses:
+        '201': { description: Created }
   /marketplace/listings:
     get:
       summary: List marketplace listings
@@ -253,6 +332,58 @@ paths:
           schema: { type: string, enum: [SERVICE, JOB, REQUEST, PRODUCT] }
       responses:
         '200': { description: Listings list }
+    post:
+      summary: Create marketplace listing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ownerUserId, type, title, description]
+              properties:
+                ownerUserId: { type: string }
+                orgId: { type: string }
+                type: { type: string, enum: [SERVICE, JOB, REQUEST, PRODUCT] }
+                title: { type: string }
+                description: { type: string }
+                price: { type: number }
+                currency: { type: string }
+      responses:
+        '201': { description: Created }
+  /marketplace/offers:
+    post:
+      summary: Create marketplace offer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [listingId, bidderUserId, amount]
+              properties:
+                listingId: { type: string }
+                bidderUserId: { type: string }
+                amount: { type: number }
+      responses:
+        '201': { description: Created }
+  /marketplace/orders:
+    post:
+      summary: Create marketplace order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [listingId, buyerUserId, sellerUserId, amount]
+              properties:
+                listingId: { type: string }
+                buyerUserId: { type: string }
+                sellerUserId: { type: string }
+                amount: { type: number }
+      responses:
+        '201': { description: Created }
   /billing/subscriptions:
     get:
       summary: List subscriptions

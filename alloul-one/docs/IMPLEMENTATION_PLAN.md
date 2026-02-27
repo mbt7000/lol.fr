@@ -29,9 +29,9 @@
 - [~] Ownership transfer workflows (next increment: assign successor + transfer actions)
 
 ## M5
-- Public feed/profile/follows/groups
-- Marketplace listings/offers/orders
-- Messaging architecture (phase-prep)
+- [x] Public feed/profile/follows/groups
+- [x] Marketplace listings/offers/orders
+- [~] Messaging architecture (phase-prep)
 
 ## M6
 - Stripe billing + usage metering
