@@ -7,9 +7,10 @@
 - [x] OpenAPI seed contracts
 - [x] Local docker-compose for core services
 - [x] NestJS bootstrap with modules (auth/org/rbac/admin)
-- [~] OIDC + OAuth2 + passwordless (skeleton started, providers pending)
+- [~] OIDC + OAuth2 + passwordless (API flows added; provider secrets/callback wiring pending)
 - [x] Tenant middleware + policy guards (initial scaffold)
 - [x] M1.5 UI shell: Sidebar + Auth page + Onboarding page + Admin overview
+- [x] M1.6: API-connected Auth/Onboarding + i18n switch + RTL
 
 ## M2
 - Knowledge base modules (docs/versioning/approvals)
