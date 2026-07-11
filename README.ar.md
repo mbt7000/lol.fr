@@ -62,7 +62,7 @@ Sonnet — بل ويجعل النماذج الأكبر نفسها أفضل، ل�
 هذا هو هدف تصميم المكتبة: **أسلوب عمل النماذج المتقدمة كملفات مفتوحة
 المصدر قابلة للنقل.**
 
-## المهارات المتوفرة (21 مهارة)
+## المهارات المتوفرة (24 مهارة)
 
 ### نواة التنسيق — أنماط التوازي
 
@@ -114,6 +114,26 @@ Sonnet — بل ويجعل النماذج الأكبر نفسها أفضل، ل�
 | المهارة | وظيفتها |
 |---|---|
 | [`prompt-engineer`](skills/prompt-engineer/SKILL.md) | تطوير LLM بالتقييم أولًا: حالات اختبار مُقيَّمة قبل الـ prompt، وتحسين بالقياس لا بالانطباع |
+
+### المعرفة والعقل الثاني
+
+| المهارة | وظيفتها |
+|---|---|
+| [`graphify`](skills/graphify/SKILL.md) | تحويل أي توثيق إلى Obsidian vault بروابط wikilinks (مع أداة CLI حقيقية: [`tools/graphify.py`](tools/graphify.py)) |
+| [`knowledge-loop`](skills/knowledge-loop/SKILL.md) | حلقة دورية: التقاط ← تنظيم ← تقطير ← تعبير، تُبقي قاعدة المعرفة حيّة |
+| [`work-hub`](skills/work-hub/SKILL.md) | لوحة عمل موحّدة في git: كل مشروع ومهمة وقرار مرئي من ملف واحد |
+
+**جرّبها الآن** — ابنِ عقلًا ثانيًا من توثيق Claude Code الرسمي بأمر واحد
+(بدون أي تبعيات، Python قياسي):
+
+```bash
+python3 tools/graphify.py obsidian https://code.claude.com/docs/llms.txt --vault ./claude-code-vault
+```
+
+افتح المجلد في Obsidian وشاهد الرسم البياني (Graph View). عيّنة من
+الناتج (12 صفحة) موجودة في
+[`examples/claude-code-vault-sample/`](examples/claude-code-vault-sample/)
+(المحتوى ملك Anthropic — انظر ATTRIBUTION.md).
 
 ## التثبيت
 

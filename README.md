@@ -119,6 +119,26 @@ portable, open-source files.**
 |---|---|
 | [`prompt-engineer`](skills/prompt-engineer/SKILL.md) | Eval-first LLM development: graded test cases before the prompt, iterate on measurements not vibes |
 
+### Knowledge & second brain
+
+| Skill | What it does |
+|---|---|
+| [`graphify`](skills/graphify/SKILL.md) | Turn any documentation corpus into a wikilinked Obsidian vault (ships with a real CLI: [`tools/graphify.py`](tools/graphify.py)) |
+| [`knowledge-loop`](skills/knowledge-loop/SKILL.md) | Recurring capture → organize → distill → express loop that keeps the vault alive |
+| [`work-hub`](skills/work-hub/SKILL.md) | Single-pane work dashboard in git: every project, task, and decision visible from one file |
+
+**Try it now** — build a second brain from the official Claude Code docs
+in one command (no dependencies, stdlib Python):
+
+```bash
+python3 tools/graphify.py obsidian https://code.claude.com/docs/llms.txt --vault ./claude-code-vault
+```
+
+Open the folder in Obsidian and check the graph view. A 12-page sample of
+the result is committed at
+[`examples/claude-code-vault-sample/`](examples/claude-code-vault-sample/)
+(content © Anthropic, see its ATTRIBUTION.md).
+
 ## Installation
 
 Skills live in a `skills/<name>/SKILL.md` layout, compatible with Claude Code.
@@ -173,6 +193,10 @@ skills/                 the skills (copy these into .claude/skills/)
   orchestrate/SKILL.md
   deep-research/SKILL.md
   ...
+tools/
+  graphify.py           docs → Obsidian vault CLI (stdlib only)
+examples/
+  claude-code-vault-sample/   sample vault built from the Claude Code docs
 docs/
   ARCHITECTURE.md       deep dive: why these patterns work
 install.sh              installer
