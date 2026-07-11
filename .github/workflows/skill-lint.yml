@@ -1,0 +1,26 @@
+name: skill-lint
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - "skills/**"
+      - "tools/**"
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Lint all skills
+        run: python3 tools/skill_lint.py
+      - name: Graphify smoke test (offline)
+        run: |
+          mkdir -p /tmp/mini-docs
+          printf '# A\n\nSee [B](b.md).\n' > /tmp/mini-docs/a.md
+          printf '# B\n\nBack to [A](a.md).\n' > /tmp/mini-docs/b.md
+          python3 tools/graphify.py obsidian /tmp/mini-docs --vault /tmp/mini-vault
+          test -f "/tmp/mini-vault/Home.md"
+          grep -rq '\[\[' /tmp/mini-vault

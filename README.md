@@ -119,6 +119,25 @@ portable, open-source files.**
 |---|---|
 | [`prompt-engineer`](skills/prompt-engineer/SKILL.md) | Eval-first LLM development: graded test cases before the prompt, iterate on measurements not vibes |
 
+### The Forge — Claude that develops itself
+
+The layer that makes this library different from a static skill
+collection: skills that **create, measure, and evolve skills** from your
+own usage. Your Claude doesn't just come pre-skilled — it grows a skill
+library shaped by how you actually work.
+
+| Skill | What it does |
+|---|---|
+| [`skill-forge`](skills/skill-forge/SKILL.md) | Mines your sessions, corrections, and git history for recurring patterns and forges new custom SKILL.md files from them |
+| [`skill-eval`](skills/skill-eval/SKILL.md) | Proves a skill actually helps: blind A/B scenarios with rubric judges → promote / revise / retire |
+| [`claude-tuner`](skills/claude-tuner/SKILL.md) | Compiles a personal Claude setup from evidence: tailored CLAUDE.md, skill loadout, permissions, hooks |
+
+The improvement cycle: `claude-tuner` audits → `skill-forge` generates →
+`skill-eval` proves → `work-hub` tracks the promotion → `knowledge-loop`
+keeps the cadence. Quality is enforced mechanically:
+[`tools/skill_lint.py`](tools/skill_lint.py) validates every skill's
+format and safety in CI (see `.github/workflows/skill-lint.yml`).
+
 ### Knowledge & second brain
 
 | Skill | What it does |
@@ -195,6 +214,7 @@ skills/                 the skills (copy these into .claude/skills/)
   ...
 tools/
   graphify.py           docs → Obsidian vault CLI (stdlib only)
+  skill_lint.py         quality gate for SKILL.md files (runs in CI)
 examples/
   claude-code-vault-sample/   sample vault built from the Claude Code docs
 docs/

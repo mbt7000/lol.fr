@@ -93,6 +93,7 @@ def parse_llms_txt(text: str, base_url: str) -> list[Page]:
 
 def load_local_dir(root: pathlib.Path) -> list[Page]:
     pages = []
+    root = root.resolve()
     for path in sorted(root.rglob("*.md")):
         body = path.read_text(encoding="utf-8", errors="replace")
         heading = re.search(r"^#\s+(.+)$", body, re.MULTILINE)
@@ -125,7 +126,9 @@ def wikilinkify(body: str, by_url_key: dict[str, Page]) -> str:
             return m.group(0)
         key = re.sub(r"\.mdx?$", "", urllib.parse.urlsplit(target).path).rstrip("/")
         key = key.split("#")[0]
-        page = by_url_key.get(key)
+        # exact match first; fall back to basename so relative links
+        # ("b.md", "../guides/b.md") in local corpora still resolve
+        page = by_url_key.get(key) or by_url_key.get(key.rsplit("/", 1)[-1])
         if page is None:
             return m.group(0)
         if text.strip().lower() == page.note_name.lower():
@@ -155,7 +158,10 @@ def frontmatter(page: Page, fetched: str) -> str:
 def build_vault(pages: list[Page], vault: pathlib.Path, corpus_name: str) -> None:
     fetched = _dt.date.today().isoformat()
     dedupe_note_names(pages)
-    by_url_key = {p.url_key: p for p in pages}
+    by_url_key: dict[str, Page] = {}
+    for p in pages:
+        by_url_key.setdefault(p.url_key.rsplit("/", 1)[-1], p)
+    by_url_key.update({p.url_key: p for p in pages})
     sections: dict[str, list[Page]] = {}
     for page in pages:
         sections.setdefault(page.section, []).append(page)
