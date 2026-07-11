@@ -47,18 +47,77 @@ Four principles, encoded in every skill in this library:
 4. **Loop until dry.** Discovery work (bugs, sources, edge cases) ends when
    *K* consecutive rounds find nothing new — never at an arbitrary count.
 
+## Why skills amplify smaller models
+
+Running the largest model for everything is expensive. There is a
+well-understood, honest alternative: **most of the gap between a good
+model and a frontier one on process-driven tasks is procedure, not raw
+intelligence** — knowing to reproduce before debugging, to profile before
+optimizing, to write the eval before the prompt, to verify adversarially
+before reporting.
+
+Skills encode exactly that procedure. A SKILL.md doesn't change the model;
+it changes what the model *does*: forced phases, explicit stop conditions,
+output contracts, and self-verification steps. In practice this closes a
+large part of the quality gap on structured work (debugging, reviewing,
+migrating, researching) while running on a cheaper model — and it makes
+the largest models better too, because procedure compounds with capability.
+
+That is the design goal of this library: **frontier working style as
+portable, open-source files.**
+
 ## Skills included
+
+### Orchestration core — the parallel patterns
 
 | Skill | What it does |
 |---|---|
 | [`orchestrate`](skills/orchestrate/SKILL.md) | The master pattern: decompose → fan-out → verify → synthesize, for any large task |
-| [`deep-research`](skills/deep-research/SKILL.md) | Multi-angle parallel research sweep with adversarial fact-checking and a cited report |
-| [`sci-research`](skills/sci-research/SKILL.md) | Scientific/physics research workflow: hypothesis, parallel literature sweep, methodology critique |
 | [`adversarial-verify`](skills/adversarial-verify/SKILL.md) | N independent skeptics per claim; majority-refute kills it |
 | [`judge-panel`](skills/judge-panel/SKILL.md) | Generate N solutions from different angles, score with independent judges, synthesize the winner |
-| [`parallel-review`](skills/parallel-review/SKILL.md) | Code review fanned out by dimension (correctness, security, performance, tests), findings verified before reporting |
 | [`loop-until-dry`](skills/loop-until-dry/SKILL.md) | Exhaustive discovery loop that stops only after K dry rounds |
 | [`swarm-migrate`](skills/swarm-migrate/SKILL.md) | Large-scale refactors: discover all sites, transform in isolated parallel workers, verify each |
+
+### Research & analysis
+
+| Skill | What it does |
+|---|---|
+| [`deep-research`](skills/deep-research/SKILL.md) | Multi-angle parallel research sweep with adversarial fact-checking and a cited report |
+| [`sci-research`](skills/sci-research/SKILL.md) | Scientific/physics research workflow: hypothesis, parallel literature sweep, methodology critique |
+| [`data-analysis`](skills/data-analysis/SKILL.md) | Data audit before statistics, hypotheses before slicing, uncertainty on every number |
+
+### Engineering discipline
+
+| Skill | What it does |
+|---|---|
+| [`debug-protocol`](skills/debug-protocol/SKILL.md) | Scientific debugging: reproduce → ranked hypotheses → bisect → prove the fix |
+| [`test-architect`](skills/test-architect/SKILL.md) | Risk-ranked test design with boundary tables and mutation self-checks |
+| [`refactor-safely`](skills/refactor-safely/SKILL.md) | Characterization tests first, mechanical green-to-green steps, proven equivalence |
+| [`perf-optimize`](skills/perf-optimize/SKILL.md) | Profile before touching code; fix the top of the profile; prove wins with before/after numbers |
+| [`legacy-explore`](skills/legacy-explore/SKILL.md) | Map an unfamiliar codebase: trace real requests, hunt invariants and traps, before changing anything |
+| [`parallel-review`](skills/parallel-review/SKILL.md) | Code review fanned out by dimension (correctness, security, performance, tests), findings verified before reporting |
+
+### Design & product
+
+| Skill | What it does |
+|---|---|
+| [`spec-first`](skills/spec-first/SKILL.md) | Turn a vague ask into a buildable spec: decided ambiguities, testable acceptance criteria, explicit non-goals |
+| [`api-design`](skills/api-design/SKILL.md) | Contract-first API design: model before endpoints, error/pagination/idempotency decided up front |
+| [`write-docs`](skills/write-docs/SKILL.md) | Docs with a deliberate type (tutorial/how-to/reference/explanation) and every example actually executed |
+
+### Operations & reliability
+
+| Skill | What it does |
+|---|---|
+| [`incident-response`](skills/incident-response/SKILL.md) | Stabilize before diagnosing, one change at a time, timeline file, blameless postmortem |
+| [`ci-doctor`](skills/ci-doctor/SKILL.md) | Classify CI failures (real/flake/infra/drift), reproduce locally, never retry-loop blindly |
+| [`security-audit`](skills/security-audit/SKILL.md) | Defensive audit: threat model, trace untrusted data paths, every finding with a concrete attack path |
+
+### AI engineering
+
+| Skill | What it does |
+|---|---|
+| [`prompt-engineer`](skills/prompt-engineer/SKILL.md) | Eval-first LLM development: graded test cases before the prompt, iterate on measurements not vibes |
 
 ## Installation
 
