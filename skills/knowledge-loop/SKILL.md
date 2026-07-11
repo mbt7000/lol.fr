@@ -65,6 +65,14 @@ added/distilled/archived, the artifact expressed, and health-check
 counts. If running under `/loop` or a schedule, this report is the
 iteration's output; keep it under ten lines.
 
+## Companions in the review chain
+
+When the growth-layer skills are installed, this loop is step 2 of
+`conductor`'s review chain (hub refresh → this loop → `growth-map` →
+`learning-tracker` → `companion-profile`). Running unattended, do your
+own steps only and list the companions' due work in the report —
+recall reviews and consent batches need the human present.
+
 ## Rules
 
 - Never let a loop iteration only *add* — every run distills or archives

@@ -36,8 +36,9 @@ Forge only patterns that pass all three gates:
 
 - **Recurrence**: seen 3+ times, or explicitly stated as a standing rule.
 - **Procedure-shaped**: has steps, decisions, and a verifiable done-state.
-  A preference ("prefer tabs") belongs in CLAUDE.md, not a skill — route
-  it there instead.
+  A preference ("prefer tabs") is not a skill — route it to CLAUDE.md
+  (project-scoped, via `claude-tuner`) or to `companion-profile`
+  (person-scoped) instead.
 - **Failure history**: doing it wrong has actually cost something
   (a revert, a correction, a broken release). Skills exist to prevent
   paid-for mistakes from being paid twice.

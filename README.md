@@ -151,6 +151,22 @@ keeps the cadence. Quality is enforced mechanically:
 [`tools/skill_lint.py`](tools/skill_lint.py) validates every skill's
 format and safety in CI (see `.github/workflows/skill-lint.yml`).
 
+### Personal growth — the system grows the person, not just the code
+
+The rarest layer: skills that connect **you** to your work and
+achievements. Goals mapped to real work with drift detection, plans
+backcast from outcomes with kill-criteria, an evidence-based ledger of
+the skills *you* are acquiring (with recall reviews generated from your
+own second brain), and a consent-first personal profile that lives on
+your device and makes every session fit you better.
+
+| Skill | What it does |
+|---|---|
+| [`growth-map`](skills/growth-map/SKILL.md) | Living map from goals → active work → evidence-backed achievements, with drift detection and weekly deltas |
+| [`plan-builder`](skills/plan-builder/SKILL.md) | Backcast a goal into milestones with kill-criteria, risk-first order, and a first slice you can start today |
+| [`learning-tracker`](skills/learning-tracker/SKILL.md) | Tracks the skills the *person* acquires — behavioral levels, evidence-only promotions, recall reviews from their vault |
+| [`companion-profile`](skills/companion-profile/SKILL.md) | Consent-first personal model in a file you own (default `~/.claude/profile.md`, outside any repo): provenance-tagged requirements sessions read once wired into CLAUDE.md |
+
 ### Knowledge & second brain
 
 | Skill | What it does |

@@ -77,8 +77,10 @@ Turn the reading into concrete deltas, silently:
   back in one line ("So the real target is the demo on Thursday —
   optimizing for that") — cheap to confirm, expensive to guess wrong.
 - When the user corrects your reading, that correction is gold: apply
-  it immediately and route durable preferences to `claude-tuner`'s
-  CLAUDE.md hard-rules list so every future session inherits it.
+  it immediately, then persist it where it belongs — person-scoped
+  preferences to `companion-profile` (with its consent gate),
+  project-scoped rules to CLAUDE.md via `claude-tuner` — so every
+  future session inherits it.
 
 ## Rules
 

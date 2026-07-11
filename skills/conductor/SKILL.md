@@ -35,6 +35,7 @@ Then read the task and place it (multiple labels allowed):
 | LLM feature/prompt | `prompt-engineer` |
 | API/interface to design | `api-design` |
 | big multi-part task, "thoroughly" | `orchestrate` as the outer frame |
+| "weekly review" / "how am I doing" | **the review chain**, in order: `work-hub` refresh → `knowledge-loop` → `growth-map` (weekly tier) → `learning-tracker` → `companion-profile` pending batch. Order matters: each step reads the previous one's fresh state. A narrower ask runs only its own step. |
 
 No match → do it directly with good judgment; then consider whether the
 pattern deserves a `skill-forge` candidate.

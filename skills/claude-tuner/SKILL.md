@@ -23,7 +23,9 @@ written from vibes.
    for. (Same sources and privacy rules as `skill-forge`.)
 3. **The existing setup**: current CLAUDE.md (what's stale? what does it
    say that the code contradicts?), installed skills, settings.json
-   permissions, hooks. Diff claimed conventions against 5 real files —
+   permissions, hooks, and the user's `companion-profile` if one exists
+   (person-scoped requirements live there, not in CLAUDE.md — read it,
+   don't duplicate it). Diff claimed conventions against 5 real files —
    **the code outranks the docs** when they disagree.
 
 ## Phase 2 — Compile CLAUDE.md (the contract, not an essay)
@@ -34,7 +36,10 @@ wasted line is a tax on every future turn):
 1. **Commands**: build/test/lint/run, exactly as CI runs them.
 2. **Hard rules**: the always/never list mined from corrections — each
    one line, imperative, checkable ("migrations ship with a rollback
-   script", "never edit generated/ files").
+   script", "never edit generated/ files"). Project-scoped rules only;
+   person-scoped preferences go to `companion-profile`, and CLAUDE.md
+   gets one link line (`See ~/.claude/profile.md for personal
+   requirements.`) so sessions read both.
 3. **Architecture in 10 lines**: the map a new engineer needs on day one
    (see `legacy-explore` for how to derive it).
 4. **Conventions with examples**: one good file to imitate per layer
