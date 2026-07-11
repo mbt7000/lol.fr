@@ -1,8 +1,9 @@
 # Alloul Forge ⚒️ — Fable-Style Skills for Claude Code
 
-**30 professional Agent Skills** that make any Claude Code session work
+**35 professional Agent Skills** that make any Claude Code session work
 like a frontier multi-agent system — plus a Forge layer where your Claude
-develops its own skills from how you actually work.
+develops its own skills from how you actually work, and a personal-growth
+layer that develops *you*.
 
 **العربية: [README.ar.md](README.ar.md)**
 
