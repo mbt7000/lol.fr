@@ -68,6 +68,13 @@ portable, open-source files.**
 
 ## Skills included
 
+### Operating layer — the system's front door
+
+| Skill | What it does |
+|---|---|
+| [`conductor`](skills/conductor/SKILL.md) | Takes any task, classifies it, routes it through the right skill chain with contracted handoffs |
+| [`autopilot`](skills/autopilot/SKILL.md) | Continuous safe work loop over the backlog: pick → execute via conductor → verify → commit → update hub → repeat, inside a strict autonomy envelope |
+
 ### Orchestration core — the parallel patterns
 
 | Skill | What it does |
@@ -95,6 +102,7 @@ portable, open-source files.**
 | [`refactor-safely`](skills/refactor-safely/SKILL.md) | Characterization tests first, mechanical green-to-green steps, proven equivalence |
 | [`perf-optimize`](skills/perf-optimize/SKILL.md) | Profile before touching code; fix the top of the profile; prove wins with before/after numbers |
 | [`legacy-explore`](skills/legacy-explore/SKILL.md) | Map an unfamiliar codebase: trace real requests, hunt invariants and traps, before changing anything |
+| [`git-flow`](skills/git-flow/SKILL.md) | Atomic commits scoped by intent, messages from the actual diff, reviewable PRs, messy-tree rescue |
 | [`parallel-review`](skills/parallel-review/SKILL.md) | Code review fanned out by dimension (correctness, security, performance, tests), findings verified before reporting |
 
 ### Design & product
