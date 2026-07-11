@@ -27,7 +27,7 @@ import time
 import urllib.parse
 import urllib.request
 
-USER_AGENT = "graphify/1.0 (+https://github.com/mbt7000/lol.fr)"
+USER_AGENT = "graphify/1.0 (+https://github.com/mbt7000/alloul-forge)"
 ENTRY_RE = re.compile(r"^-\s*\[(?P<title>[^\]]+)\]\((?P<url>[^)\s]+)\)(?::\s*(?P<desc>.*))?$")
 MD_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
 

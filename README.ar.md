@@ -1,4 +1,8 @@
-# مهارات بأسلوب Fable — نظام Skills احترافي للتنسيق المتوازي في Claude Code
+# علّول فورج ⚒️ Alloul Forge — مهارات بأسلوب Fable لـ Claude Code
+
+**30 مهارة احترافية** تجعل أي جلسة Claude Code تعمل كنظام متعدد الوكلاء
+متقدم — مع طبقة "الحدّاد" التي تجعل كلودك يطوّر مهاراته بنفسه من طريقة
+عملك الفعلية.
 
 **English: [README.md](README.md)**
 
@@ -167,14 +171,14 @@ python3 tools/graphify.py obsidian https://code.claude.com/docs/llms.txt --vault
 **داخل مشروع واحد** (مُوصى به):
 
 ```bash
-git clone https://github.com/mbt7000/lol.fr fable-skills
-cp -r fable-skills/skills/* your-project/.claude/skills/
+git clone https://github.com/mbt7000/alloul-forge
+cp -r alloul-forge/skills/* your-project/.claude/skills/
 ```
 
 **عالميًا** (متاح في كل المشاريع):
 
 ```bash
-cp -r fable-skills/skills/* ~/.claude/skills/
+cp -r alloul-forge/skills/* ~/.claude/skills/
 ```
 
 أو استخدم السكربت المساعد:

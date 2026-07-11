@@ -1,4 +1,8 @@
-# Fable-Style Skills — Parallel Orchestration Skills for Claude Code
+# Alloul Forge ⚒️ — Fable-Style Skills for Claude Code
+
+**30 professional Agent Skills** that make any Claude Code session work
+like a frontier multi-agent system — plus a Forge layer where your Claude
+develops its own skills from how you actually work.
 
 **العربية: [README.ar.md](README.ar.md)**
 
@@ -173,14 +177,14 @@ Skills live in a `skills/<name>/SKILL.md` layout, compatible with Claude Code.
 **Per-project** (recommended):
 
 ```bash
-git clone https://github.com/mbt7000/lol.fr fable-skills
-cp -r fable-skills/skills/* your-project/.claude/skills/
+git clone https://github.com/mbt7000/alloul-forge
+cp -r alloul-forge/skills/* your-project/.claude/skills/
 ```
 
 **Global** (available in every project):
 
 ```bash
-cp -r fable-skills/skills/* ~/.claude/skills/
+cp -r alloul-forge/skills/* ~/.claude/skills/
 ```
 
 Or run the helper:
