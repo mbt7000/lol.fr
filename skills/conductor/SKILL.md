@@ -12,7 +12,12 @@ deliberate routing, chained execution.
 
 ## Phase 1 — Classify before touching anything
 
-Read the task and place it (multiple labels allowed):
+**Read the human first** (`intent-reader`): the goal behind the words,
+urgency, expertise, and risk posture set how every later stage behaves —
+the same task routes the same but *executes* differently for "prod is
+down" versus "I'm curious why this is slow".
+
+Then read the task and place it (multiple labels allowed):
 
 | Signal in the task | Route |
 |---|---|

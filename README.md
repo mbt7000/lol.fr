@@ -78,6 +78,7 @@ portable, open-source files.**
 |---|---|
 | [`conductor`](skills/conductor/SKILL.md) | Takes any task, classifies it, routes it through the right skill chain with contracted handoffs |
 | [`autopilot`](skills/autopilot/SKILL.md) | Continuous safe work loop over the backlog: pick → execute via conductor → verify → commit → update hub → repeat, inside a strict autonomy envelope |
+| [`intent-reader`](skills/intent-reader/SKILL.md) | Reads the human before the task: the goal behind the words, urgency, frustration, expertise — then calibrates depth, autonomy, and tone to match |
 
 ### Orchestration core — the parallel patterns
 
