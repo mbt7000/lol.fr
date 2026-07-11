@@ -1,6 +1,6 @@
 ---
 name: intent-reader
-description: Read the human before executing the task — infer the goal behind the words, gauge urgency, frustration, expertise, and decision-mode from observable signals, then calibrate depth, autonomy, and communication to match. Use at intake on any ambiguous, emotionally loaded, or high-stakes request, and whenever the user seems dissatisfied with previous responses.
+description: Read the human before executing the task — infer the goal behind the words, gauge urgency, frustration, expertise, and decision-mode from observable signals, then calibrate depth, autonomy, and communication to match. Use when a request is ambiguous, emotionally loaded, or high-stakes, at conductor intake, and whenever the user seems dissatisfied with previous responses.
 ---
 
 # Intent Reader
